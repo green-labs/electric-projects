@@ -1,0 +1,22 @@
+name: 'ECS 배포'
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request: {}
+
+jobs:
+  deploy:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          push: false
+          build-args: |
+            VERSION=${{ github.head_ref }}.${{ github.sha }}

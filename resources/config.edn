@@ -1,0 +1,9 @@
+{:db   {:dbtype      "mysql"
+        :user        #or [#env DB_USER "root"]
+        :password    #or [#env DB_PASSWORD ""]
+        :host        #or [#env DB_HOST "localhost"]
+        :dbname      #or [#env DB_NAME "db_name"]
+        :port-number 3306}
+ :auth {:token-api-url       #or [#env TOKEN_API_URL "https://your-api-server-for-token.com"]
+        :access-token-secret #or [#env ACCESS_TOKEN_SECRET ""]
+        :alg                 :hs256}}

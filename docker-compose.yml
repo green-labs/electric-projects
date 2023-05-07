@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  mysql:
+    platform: linux/x86_64
+    image: mysql:8.0.23
+    volumes:
+      - mysql:/var/lib/mysql
+      - ./resources/migrations/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-dbname}
+      MYSQL_ALLOW_EMPTY_PASSWORD: ${MYSQL_ALLOW_EMPTY_PASSWORD:-true}
+    ports:
+      - "3306:3306"
+    restart: always
+
+volumes:
+  mysql: {}
